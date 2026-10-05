@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+
+<script>
+/* =====================================================================
+   ✏️  EDIT YOUR INFO HERE — this is the only part you need to change.
+   Type between the quote marks "like this". Keep the quotes and commas.
+   Leave something as "" (empty quotes) to hide it from the page.
+   ===================================================================== */
+const ME = {
+  name:       "Marcos D Nunes",
+  headline:   "IT Support → Cloud Engineer",
+  location:   "Danbury, Connecticut",
+  email:      "dn57906@gmail.com",
+  linkedin:   "",   // e.g. "https://www.linkedin.com/in/your-name"
+  github:     "https://github.com/zuzu-nunes",
+
+  helpDeskEmployer: "Acture Solutions",
+  college:          "Pensacola Christian College",
+  certTargetDate:   "Late 2026"
+};
+/* ============================ END OF EDIT AREA ============================ */
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --text: #14181f;
+    --muted: #5a6372;
+    --border: #e3e6eb;
+    --accent: #0f7b6c;
+    --accent-soft: #e3f3f0;
+    --warn: #9a6200;
+    --warn-soft: #fbf1dc;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --surface: #151b23;
+      --text: #e6e9ee;
+      --muted: #8d96a5;
+      --border: #262e3a;
+      --accent: #3fc8b0;
+      --accent-soft: #12302b;
+      --warn: #e8b04a;
+      --warn-soft: #2e2512;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+  nav .brand { font-weight: 700; color: var(--text); white-space: nowrap; }
+  nav .links { display: flex; gap: 20px; font-size: 14px; overflow-x: auto; }
+  nav .links a { color: var(--muted); }
+  nav .links a:hover { color: var(--text); text-decoration: none; }
+
+  header { padding: 88px 0 64px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace; font-size: 13px;
+    color: var(--accent); letter-spacing: .02em; margin-bottom: 12px;
+  }
+  h1 { font-size: clamp(36px, 7vw, 56px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .lede { font-size: 19px; color: var(--muted); max-width: 620px; margin: 0 0 28px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 10px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; border: 1px solid var(--border);
+    color: var(--text); background: var(--surface);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #06201c; } }
+  .btn:hover { text-decoration: none; filter: brightness(1.05); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--border); }
+  h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: .1em;
+    color: var(--muted); margin: 0 0 24px; font-weight: 600;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px;
+  }
+  .stack { display: grid; gap: 16px; }
+  .grid3 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  h3 { margin: 0 0 4px; font-size: 18px; }
+  .meta { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
+  .card p { margin: 0; }
+  ul.points { margin: 8px 0 0; padding-left: 20px; }
+  ul.points li { margin: 4px 0; }
+
+  .badge {
+    display: inline-block; font-size: 12px; font-weight: 600;
+    padding: 3px 10px; border-radius: 999px; margin-bottom: 12px;
+  }
+  .badge.soon { background: var(--warn-soft); color: var(--warn); }
+  .badge.live { background: var(--accent-soft); color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    padding: 3px 8px; border-radius: 6px;
+    background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+  }
+  .project { display: flex; flex-direction: column; }
+  .project p { flex: 1; }
+  .num { font-family: "JetBrains Mono", monospace; color: var(--muted); font-size: 13px; }
+
+  .skills { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .skills h3 { font-size: 15px; margin-bottom: 8px; }
+
+  footer { padding: 40px 0 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top" data-me="name"></a>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+  <header>
+    <div class="eyebrow" data-me="headline"></div>
+    <h1 data-me="name"></h1>
+    <p class="lede">
+      Cybersecurity graduate with 3 years of hands-on IT support and a background in
+      enterprise backup &amp; recovery. Now building secure, automated infrastructure on AWS.
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" data-link="email">Email me</a>
+      <a class="btn" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" data-link="github" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="stack">
+      <p>
+        I have a B.S. in Cybersecurity and have spent the last three years solving real problems for real
+        users as an on-site help desk technician, including managing a fleet of 600 Macs through Mosyle MDM. Before that, I worked two years on my college's IT
+        team running backups and restores with Commvault, which is where I learned that a backup only matters
+        if you can actually restore it.
+      </p>
+      <p>
+        I'm now focused on cloud security: studying for the AWS Certified Cloud Practitioner exam and
+        building hands-on projects that combine AWS, infrastructure as code, and the backup/recovery
+        experience I already have.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid3">
+      <div class="card project">
+        <span class="badge soon">Coming soon</span>
+        <div class="num">01</div>
+        <h3>Secure AWS Environment as Code</h3>
+        <p>A production-style AWS network built entirely with Terraform: public and private subnets,
+           a load-balanced app tier, a private database, least-privilege IAM, and security monitoring
+           with CloudTrail, GuardDuty, and AWS Config.</p>
+        <div class="tags"><span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">IAM</span><span class="tag">GuardDuty</span></div>
+      </div>
+      <div class="card project">
+        <span class="badge soon">Coming soon</span>
+        <div class="num">02</div>
+        <h3>Automated Backup &amp; Disaster Recovery</h3>
+        <p>Cloud-native version of the backup work I did with Commvault: Lambda-scheduled EBS and RDS
+           snapshots, cross-region replication, S3 lifecycle policies, and a tested, documented restore runbook.</p>
+        <div class="tags"><span class="tag">Lambda</span><span class="tag">EBS</span><span class="tag">RDS</span><span class="tag">S3</span></div>
+      </div>
+      <div class="card project">
+        <span class="badge soon">Coming soon</span>
+        <div class="num">03</div>
+        <h3>Home-Lab SIEM</h3>
+        <p>A security monitoring lab that collects logs from my AWS environment and a deliberately
+           vulnerable VM, with custom detection rules and dashboards for spotting suspicious activity.</p>
+        <div class="tags"><span class="tag">Wazuh</span><span class="tag">SIEM</span><span class="tag">Detection</span><span class="tag">Logging</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="stack">
+      <div class="card">
+        <h3>Tier 1 Help Desk On-Site Technician / Educational Technologist</h3>
+        <div class="meta"><span data-me="helpDeskEmployer"></span> · 2023 – Present</div>
+        <ul class="points">
+          <li>Manage a fleet of 600 company Macs through Mosyle MDM (certified): enroll new devices, deploy apps and OS updates, and handle security policy exemptions for users and devices</li>
+          <li>Manage Active Directory groups to control software access and licensing (Adobe, Bluebook)</li>
+          <li>Plan and carry out technology setups for exams and testing, including digital exams on Bluebook</li>
+          <li>Support teachers and staff with classroom technology, hardware, software, and account issues</li>
+          <li>Troubleshoot, document, and resolve support tickets; set up and maintain workstations</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Junior Associate System Engineer (Intern)</h3>
+        <div class="meta"><span data-me="college"></span> IT Department · 2021 – 2023</div>
+        <ul class="points">
+          <li>Ran and monitored routine data backups using Commvault</li>
+          <li>Performed file and system restores on request</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education &amp; Certifications</h2>
+    <div class="grid3">
+      <div class="card">
+        <h3>B.S. Cybersecurity</h3>
+        <div class="meta" data-me="college"></div>
+        <p>Graduated May 2023</p>
+      </div>
+      <div class="card">
+        <span class="badge soon">In progress</span>
+        <h3>AWS Certified Cloud Practitioner</h3>
+        <div class="meta">CLF-C02</div>
+        <p>Target: <span data-me="certTargetDate"></span></p>
+      </div>
+      <div class="card">
+        <span class="badge live">Certified</span>
+        <h3>Mosyle MDM Certification</h3>
+        <div class="meta">Mosyle</div>
+        <p>Earned Fall 2025</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card">
+        <h3>Cloud &amp; Infrastructure</h3>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">IAM</span><span class="tag">EC2</span><span class="tag">S3</span><span class="tag">VPC</span><span class="tag">AWS CLI</span><span class="tag">Terraform (learning)</span></div>
+      </div>
+      <div class="card">
+        <h3>Backup &amp; Recovery</h3>
+        <div class="tags"><span class="tag">Commvault</span><span class="tag">Backup jobs</span><span class="tag">Restores</span></div>
+      </div>
+      <div class="card">
+        <h3>IT Support</h3>
+        <div class="tags"><span class="tag">Troubleshooting</span><span class="tag">Ticketing</span><span class="tag">Hardware</span><span class="tag">End-user support</span><span class="tag">Mosyle MDM</span><span class="tag">Apple device management</span><span class="tag">Device enrollment</span><span class="tag">Patch management</span><span class="tag">Active Directory</span><span class="tag">Group-based access</span><span class="tag">License management</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="margin:0 0 20px;color:var(--muted)">
+      Open to cloud support, cloud security, and infrastructure roles.
+      <span data-me="location"></span>
+    </p>
+    <div class="cta">
+      <a class="btn primary" data-link="email">Email me</a>
+      <a class="btn" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" data-link="github" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> <span data-me="name"></span></div>
+</footer>
+
+<script>
+  // Fills the page with the info from the EDIT area at the top. No need to touch this.
+  document.title = ME.name + " | Portfolio";
+  document.querySelectorAll("[data-me]").forEach(el => {
+    const v = ME[el.dataset.me];
+    if (v) el.textContent = v; else el.hidden = true;
+  });
+  document.querySelectorAll("[data-link]").forEach(el => {
+    const key = el.dataset.link, v = ME[key];
+    if (!v) { el.hidden = true; return; }
+    el.href = key === "email" ? "mailto:" + v : v;
+  });
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
