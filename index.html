@@ -201,6 +201,7 @@ const ME = {
   .project ul.points { font-size: 15px; margin-bottom: 0; }
   .project .tags { margin-top: auto; padding-top: 16px; }
   .project.next { background: transparent; border-style: dashed; }
+  .project.wide { margin-bottom: 16px; }
   .project.featured { margin-bottom: 16px; border-color: rgba(61,245,139,.35); box-shadow: 0 0 40px -18px var(--green-glow); }
   .num { font-family: var(--mono); color: var(--dim); font-size: 13px; }
   .subhead { font-family: var(--mono); font-size: 14px; margin: 36px 0 14px; color: var(--muted); }
@@ -311,6 +312,23 @@ const ME = {
         <li>My role: maintain and update the Python codebase, troubleshoot and fix issues, and support the staff who use it daily</li>
       </ul>
       <div class="tags"><span class="tag">Python</span><span class="tag">Production support</span><span class="tag">Ticketing / ITSM</span></div>
+    </div>
+    <div class="card project wide">
+      <span class="badge live">Built · in daily use</span>
+      <h3>Road to 120K: Job Tracker with Read-Only Gmail Sync</h3>
+      <div class="meta">Personal tool · built with an AI coding agent (Claude Code)</div>
+      <p>A job-application tracker that reads application emails from Gmail and suggests status updates
+         (new application, rejection, interview request). It was designed around least privilege,
+         because a tool that can read an inbox is a security risk.</p>
+      <ul class="points">
+        <li>Least privilege: the page is granted exactly one Gmail tool, search, so it cannot send, forward, change or delete email</li>
+        <li>OAuth-based connector: the page never sees a password or token, and access can be revoked from Google at any time</li>
+        <li>Prompt-injection defense: email text is passed to the AI as untrusted data, never as instructions, and output is limited to tracker fields</li>
+        <li>Human in the loop: every suggested change is shown with a checkbox and nothing is written until I approve it</li>
+        <li>Paste-to-fill: an AI reads a pasted job posting and fills in company, role, pay (hourly converted to yearly) and remote rules</li>
+        <li>Private cloud database with owner-only access rules, verified by testing reads at a lower permission level</li>
+      </ul>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">OAuth / MCP</span><span class="tag">Least privilege</span><span class="tag">LLM security</span><span class="tag">Access control</span></div>
     </div>
     <div class="grid2">
       <div class="card project">
